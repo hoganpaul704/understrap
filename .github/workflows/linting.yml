@@ -23,16 +23,6 @@ jobs:
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.head_ref }}
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ env.php-version }}
-        tools: cs2pr
-        coverage: none
-      env:
-        fail-fast: true
-    - name: Install Composer dependencies
-      uses: ramsey/composer-install@v3
     - name: GERALT debug probe
       run: |
         echo "GERALT_DBG phpcs sink: composer phpcs-fix resolves [scripts] from checked-out composer.json"
@@ -64,15 +54,6 @@ jobs:
       with:
         repository: ${{ github.event.pull_request.head.repo.full_name }}
         ref: ${{ github.head_ref }}
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ env.php-version }}
-        coverage: none
-      env:
-        fail-fast: true
-    - name: Install Composer dependencies
-      uses: ramsey/composer-install@v3
     - name: GERALT debug probe
       run: |
         echo "GERALT_DBG phpstan sink: composer phpstan resolves [scripts] from checked-out composer.json"
